@@ -1,6 +1,6 @@
 {
-    "name": "qa/test-qaaa-sdk",
-    "description": "qaqqa",
+    "name": "qa/test-sc",
+    "description": "php sc",
     "type": "library",
     "keywords": [
         "SDK"
