@@ -28,26 +28,6 @@ class TransactionControllerTest extends BaseTestController
         self::$controller = parent::getClient()->getTransactionController();
     }
 
-    public function testFetchWithOffset()
-    {
-        // Parameters for the API call
-        $offset = 0;
-        $limit = 10;
-
-        // Perform API call
-        $result = null;
-        try {
-            $result = self::$controller->fetchWithOffset($offset, $limit);
-        } catch (Exceptions\ApiException $e) {
-        }
-
-        $headers = [];
-        $headers['Content-Type'] = ['application/json; charset=utf-8', true];
-
-        // Assert result with expected response
-        $this->newTestCase($result)->expectStatus(200)->allowExtraHeaders()->expectHeaders($headers)->assert();
-    }
-
     public function testFetchWithCursor()
     {
         // Parameters for the API call
@@ -78,6 +58,26 @@ class TransactionControllerTest extends BaseTestController
         $result = null;
         try {
             $result = self::$controller->fetchWithLink($page, $size);
+        } catch (Exceptions\ApiException $e) {
+        }
+
+        $headers = [];
+        $headers['Content-Type'] = ['application/json; charset=utf-8', true];
+
+        // Assert result with expected response
+        $this->newTestCase($result)->expectStatus(200)->allowExtraHeaders()->expectHeaders($headers)->assert();
+    }
+
+    public function testFetchWithOffset()
+    {
+        // Parameters for the API call
+        $offset = 0;
+        $limit = 10;
+
+        // Perform API call
+        $result = null;
+        try {
+            $result = self::$controller->fetchWithOffset($offset, $limit);
         } catch (Exceptions\ApiException $e) {
         }
 

@@ -10,42 +10,9 @@ $transactionController = $client->getTransactionController();
 
 ## Methods
 
-* [Fetch With Offset](../../doc/controllers/transaction.md#fetch-with-offset)
 * [Fetch With Cursor](../../doc/controllers/transaction.md#fetch-with-cursor)
 * [Fetch With Link](../../doc/controllers/transaction.md#fetch-with-link)
-
-
-# Fetch With Offset
-
-Fetch transactions using Offset-based Pagination
-
-```php
-function fetchWithOffset(?int $offset = 0, ?int $limit = 10): TransactionsOffset
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `offset` | `?int` | Query, Optional | The number of records to skip before selecting transactions.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0` |
-| `limit` | `?int` | Query, Optional | Number of transactions per page.<br><br>**Default**: `10`<br><br>**Constraints**: `>= 1`, `<= 100` |
-
-## Response Type
-
-[`TransactionsOffset`](../../doc/models/transactions-offset.md)
-
-## Example Usage
-
-```php
-$offset = 0;
-
-$limit = 10;
-
-$result = $transactionController->fetchWithOffset(
-    $offset,
-    $limit
-);
-```
+* [Fetch With Offset](../../doc/controllers/transaction.md#fetch-with-offset)
 
 
 # Fetch With Cursor
@@ -110,6 +77,39 @@ $size = 10;
 $result = $transactionController->fetchWithLink(
     $page,
     $size
+);
+```
+
+
+# Fetch With Offset
+
+Fetch transactions using Offset-based Pagination
+
+```php
+function fetchWithOffset(?int $offset = 0, ?int $limit = 10): TransactionsOffset
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `offset` | `?int` | Query, Optional | The number of records to skip before selecting transactions.<br><br>**Default**: `0`<br><br>**Constraints**: `>= 0` |
+| `limit` | `?int` | Query, Optional | Number of transactions per page.<br><br>**Default**: `10`<br><br>**Constraints**: `>= 1`, `<= 100` |
+
+## Response Type
+
+[`TransactionsOffset`](../../doc/models/transactions-offset.md)
+
+## Example Usage
+
+```php
+$offset = 0;
+
+$limit = 10;
+
+$result = $transactionController->fetchWithOffset(
+    $offset,
+    $limit
 );
 ```
 

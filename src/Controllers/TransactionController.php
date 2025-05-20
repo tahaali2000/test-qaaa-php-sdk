@@ -20,26 +20,6 @@ use PaginationTesterLib\Models\TransactionsOffset;
 class TransactionController extends BaseController
 {
     /**
-     * Fetch transactions using Offset-based Pagination
-     *
-     * @param int|null $offset The number of records to skip before selecting transactions.
-     * @param int|null $limit Number of transactions per page.
-     *
-     * @return TransactionsOffset Response from the API call
-     *
-     * @throws ApiException Thrown if API call fails
-     */
-    public function fetchWithOffset(?int $offset = 0, ?int $limit = 10): TransactionsOffset
-    {
-        $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/transactions/offset')
-            ->parameters(QueryParam::init('offset', $offset), QueryParam::init('limit', $limit));
-
-        $_resHandler = $this->responseHandler()->type(TransactionsOffset::class);
-
-        return $this->execute($_reqBuilder, $_resHandler);
-    }
-
-    /**
      * Fetch transactions using Cursor-based Pagination
      *
      * @param string|null $cursor The unique identifier (cursor) to fetch the next set of results.
@@ -75,6 +55,26 @@ class TransactionController extends BaseController
             ->parameters(QueryParam::init('page', $page), QueryParam::init('size', $size));
 
         $_resHandler = $this->responseHandler()->type(TransactionsLinked::class);
+
+        return $this->execute($_reqBuilder, $_resHandler);
+    }
+
+    /**
+     * Fetch transactions using Offset-based Pagination
+     *
+     * @param int|null $offset The number of records to skip before selecting transactions.
+     * @param int|null $limit Number of transactions per page.
+     *
+     * @return TransactionsOffset Response from the API call
+     *
+     * @throws ApiException Thrown if API call fails
+     */
+    public function fetchWithOffset(?int $offset = 0, ?int $limit = 10): TransactionsOffset
+    {
+        $_reqBuilder = $this->requestBuilder(RequestMethod::GET, '/transactions/offset')
+            ->parameters(QueryParam::init('offset', $offset), QueryParam::init('limit', $limit));
+
+        $_resHandler = $this->responseHandler()->type(TransactionsOffset::class);
 
         return $this->execute($_reqBuilder, $_resHandler);
     }
